@@ -1,0 +1,17 @@
+{
+  "name": "soundkeep",
+  "version": "0.0.0",
+  "description": "",
+  "main": "index.js",
+  "author": "Jon Smithers",
+  "license": "MIT",
+  "private": true,
+  "flat": true,
+  "dependencies": {
+    "@polymer/paper-checkbox": "^3.0.0-pre.4",
+    "@polymer/paper-button": "^3.0.0-pre.4",
+    "@polymer/paper-input": "^3.0.0-pre.4",
+    "@polymer/paper-icon-button": "^3.0.0-pre.4",
+    "@polymer/iron-icons": "^3.0.0-pre.4"
+  }
+}
