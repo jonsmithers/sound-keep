@@ -7,11 +7,15 @@
   "license": "MIT",
   "private": true,
   "flat": true,
+  "scripts": {
+    "start": "http-server -o"
+  },
   "dependencies": {
-    "@polymer/paper-checkbox": "^3.0.0-pre.4",
+    "@polymer/iron-icons": "^3.0.0-pre.4",
     "@polymer/paper-button": "^3.0.0-pre.4",
-    "@polymer/paper-input": "^3.0.0-pre.4",
+    "@polymer/paper-checkbox": "^3.0.0-pre.4",
     "@polymer/paper-icon-button": "^3.0.0-pre.4",
-    "@polymer/iron-icons": "^3.0.0-pre.4"
+    "@polymer/paper-input": "^3.0.0-pre.4",
+    "http-server": "^0.11.1"
   }
 }
