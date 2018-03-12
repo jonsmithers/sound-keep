@@ -1,4 +1,9 @@
 <script src="./node_modules/@webcomponents/webcomponentsjs/webcomponents-loader.js"></script>
+<script>
+  document.addEventListener('WebComponentsReady', () => {
+    document.createElement = Document.prototype.createElement;
+  });
+</script>
 <head>
   <meta name="viewport" content="width=device-width, initial-scale=1">
 </head>
