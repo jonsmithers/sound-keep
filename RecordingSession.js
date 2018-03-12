@@ -14,7 +14,7 @@ class RecordingSession {
   async start() {
     this._isActive = true;
     try {
-      var audioStream = await navigator.mediaDevices.getUserMedia({audio: true});
+      var audioStream = await navigator.mediaDevices.getUserMedia({audio: true, noiseSuppression: false});
     } catch(e) {
       throw e;
     }
