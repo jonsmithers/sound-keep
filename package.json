@@ -8,9 +8,10 @@
   "private": true,
   "flat": true,
   "scripts": {
-    "start": "http-server -o"
+    "start": "http-server -o -c -1"
   },
   "dependencies": {
+    "@polymer/polymer": "^3.0.0-pre.4",
     "@polymer/iron-icons": "^3.0.0-pre.4",
     "@polymer/paper-button": "^3.0.0-pre.4",
     "@polymer/paper-checkbox": "^3.0.0-pre.4",

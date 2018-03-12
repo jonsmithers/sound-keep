@@ -1,4 +1,14 @@
+<script src="./node_modules/@webcomponents/webcomponentsjs/webcomponents-lite.js"></script>
+<script src="./node_modules/@webcomponents/webcomponentsjs/webcomponents-loader.js"></script>
+<body>
+  <style>
+    body { margin: 0; }
+  </style>
+  <swipe-tabs></swipe-tabs>
+</body>
 <script type="module">
+  import "./node_modules/@polymer/paper-button/paper-button.js";
+  import "./elements/swipe-tabs.js";
   import {RecordingSession} from './RecordingSession.js';
   (async() => {
     let session = await new RecordingSession().start();
@@ -6,6 +16,18 @@
     await new Promise(resolve => setTimeout(resolve, 2000));
     await session.stop();
     document.body.appendChild(session.getAudioElement());
-    document.body.appendChild(document.createTextNode('hey'));
   })();
+</script>
+<script nomodule>
+  console.log('NO MODULES');
+  document.body.innerHTML = `
+<pre>
+You need module support to run this app.
+
+- Chrome supports modules 
+- Firefox 57 supports modules if you enable dom.moduleScript.enabled in about:config
+</pre>
+
+
+`.trim();
 </script>
