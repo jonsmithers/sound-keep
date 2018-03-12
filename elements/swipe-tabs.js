@@ -10,12 +10,15 @@ export class SwipeTabs extends PolymerElement {
     return html`
     <!-------------------------------------------------------------------------------->
       <style>
-        .root {
-          box-sizing: border-box;
-          border: 5px solid green;
+        :host {
           display: block;
-          width: 50vw;
-          height: 50vh;
+        }
+        .root {
+          height: 100%;
+          width: 100%;
+          box-sizing: border-box;
+          /* border: 5px solid green; */
+          display: block;
           overflow-x: hidden;
           overflow-y: hidden;
         }
@@ -38,7 +41,7 @@ export class SwipeTabs extends PolymerElement {
           box-sizing: border-box;
           height: 100%;
           width: 50%;
-          border: 1px solid black;
+          /* border: 1px solid orange; */
           display: inline-block;
         }
 
@@ -47,10 +50,10 @@ export class SwipeTabs extends PolymerElement {
       <div class="root">
         <div id="hiddenScrollbar">
           <div class="bothTabsContainer">
-            <div class="singleTab">
-              tab one
-              </div><div class="singleTab">
-              tab two
+            <div class="singleTab" style="background:cyan">
+              record
+              </div><div class="singleTab" style="background:maroon; color:white;">
+              listen
             </div>
           </div>
         </div>
@@ -63,6 +66,7 @@ export class SwipeTabs extends PolymerElement {
   connectedCallback() {
     super.connectedCallback();
     let scrollbarHeight = this.$.hiddenScrollbar.offsetHeight - this.$.hiddenScrollbar.clientHeight
+    scrollbarHeight = Math.max(scrollbarHeight, 5); // mobile scrollbars have offset
     this.$.hiddenScrollbar.style.height=`calc(100% + ${scrollbarHeight}px`;
     console.log('%cyay', 'font-size:15px');
   }

@@ -1,14 +1,18 @@
-<script src="./node_modules/@webcomponents/webcomponentsjs/webcomponents-lite.js"></script>
 <script src="./node_modules/@webcomponents/webcomponentsjs/webcomponents-loader.js"></script>
+<head>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
 <body>
   <style>
     body { margin: 0; }
   </style>
-  <swipe-tabs></swipe-tabs>
+  <!-- <swipe-tabs></swipe-tabs> -->
+  <app-container></app-container>
 </body>
 <script type="module">
   import "./node_modules/@polymer/paper-button/paper-button.js";
-  import "./elements/swipe-tabs.js";
+  // import "./elements/swipe-tabs.js";
+  import "./elements/app-container.js";
   import {RecordingSession} from './RecordingSession.js';
   (async() => {
     let session = await new RecordingSession().start();
