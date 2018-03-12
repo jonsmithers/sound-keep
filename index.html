@@ -1,0 +1,27 @@
+<script src="./node_modules/@webcomponents/webcomponentsjs/webcomponents-loader.js"></script>
+<head>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+<body>
+  <style>
+    body { margin: 0; }
+  </style>
+  <!-- <swipe-tabs></swipe-tabs> -->
+  <app-container></app-container>
+</body>
+<script type="module">
+  import "./elements/app-container.js";
+</script>
+<script nomodule>
+  console.log('NO MODULES');
+  document.body.innerHTML = `
+<pre>
+You need module support to run this app.
+
+- Chrome supports modules 
+- Firefox 57 supports modules if you enable dom.moduleScript.enabled in about:config
+</pre>
+
+
+`.trim();
+</script>
