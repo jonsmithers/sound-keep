@@ -20,5 +20,9 @@
     "@polymer/paper-tabs": "^3.0.0-pre.4",
     "@polymer/polymer": "^3.0.0-pre.4",
     "http-server": "^0.11.1"
+  },
+  "devDependencies": {
+    "gulp": "^3.9.1",
+    "gulp-deploy-git": "^0.5.3"
   }
 }
