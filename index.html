@@ -10,17 +10,7 @@
   <app-container></app-container>
 </body>
 <script type="module">
-  import "./node_modules/@polymer/paper-button/paper-button.js";
-  // import "./elements/swipe-tabs.js";
   import "./elements/app-container.js";
-  import {RecordingSession} from './RecordingSession.js';
-  (async() => {
-    let session = await new RecordingSession().start();
-    console.log('session', session);
-    await new Promise(resolve => setTimeout(resolve, 2000));
-    await session.stop();
-    document.body.appendChild(session.getAudioElement());
-  })();
 </script>
 <script nomodule>
   console.log('NO MODULES');

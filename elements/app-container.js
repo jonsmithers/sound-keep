@@ -5,6 +5,7 @@ import "../node_modules/@polymer/app-layout/app-drawer/app-drawer.js";
 import "../node_modules/@polymer/paper-tabs/paper-tabs.js";
 import "./swipe-tabs.js";
 import {Element as PolymerElement, html} from "../node_modules/@polymer/polymer/polymer-element.js";
+import {RecordingSession} from '../RecordingSession.js';
 
 export class AppContainer extends PolymerElement {
   static get is() {
@@ -41,7 +42,7 @@ export class AppContainer extends PolymerElement {
           height: 0;
         }
       </style>
-      <div class="verticalFlex">
+      <div id="flexContainer" class="verticalFlex">
       <!-- <app-header> -->
         <app-toolbar>
           <!-- <div main-title>Record</div> -->
@@ -54,6 +55,17 @@ export class AppContainer extends PolymerElement {
       <swipe-tabs class="flewGrow"></swipe-tabs>
     <!-------------------------------------------------------------------------------->
     `;
+  }
+  connectedCallback() {
+    super.connectedCallback();
+    (async() => {
+      let session = await new RecordingSession().start();
+      console.log('session', session);
+      await new Promise(resolve => setTimeout(resolve, 5000));
+      await session.stop();
+      console.log('recording stopped');
+      this.$.flexContainer.appendChild(session.getAudioElement());
+    })();
   }
 }
 
