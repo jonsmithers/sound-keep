@@ -61,17 +61,6 @@ export class AppContainer extends PolymerElement {
     <!-------------------------------------------------------------------------------->
     `;
   }
-  connectedCallback() {
-    super.connectedCallback();
-    (async() => {
-      let session = await new RecordingSession().start();
-      console.log('session', session);
-      await new Promise(resolve => setTimeout(resolve, 5000));
-      await session.stop();
-      console.log('recording stopped');
-      this.$.flexContainer.appendChild(session.getAudioElement());
-    })();
-  }
 }
 
 customElements.define(AppContainer.is, AppContainer);

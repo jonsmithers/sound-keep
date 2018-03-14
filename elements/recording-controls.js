@@ -1,8 +1,9 @@
-import "../node_modules/@polymer/paper-fab/paper-fab.js";
 import "../node_modules/@polymer/iron-icons/av-icons.js";
 import "../node_modules/@polymer/iron-icons/iron-icons.js";
 import "../node_modules/@polymer/iron-pages/iron-pages.js";
+import "../node_modules/@polymer/paper-fab/paper-fab.js";
 import {Element as PolymerElement, html} from "../node_modules/@polymer/polymer/polymer-element.js";
+import {RecordingSession} from '../RecordingSession.js';
 
 export class RecordingControls extends PolymerElement {
   static get is() {
@@ -53,13 +54,17 @@ export class RecordingControls extends PolymerElement {
         <paper-fab data-name="record" icon="av:mic" on-tap="_onRecordTap"></paper-fab>
         <paper-fab data-name="stop" icon="av:stop" on-tap="_onStopTap"></paper-fab>
       </iron-pages>
+      <div id="deleteme"></div>
     `;
   }
-  _onRecordTap() {
-    this.visibleButton = 'stop'
+  async _onRecordTap() {
+    this._recordingSession = await new RecordingSession().start();
+    this.visibleButton = 'stop';
   }
-  _onStopTap() {
-    this.visibleButton = 'record'
+  async _onStopTap() {
+    this.visibleButton = 'record';
+    await this._recordingSession.stop();
+    this.$.deleteme.appendChild(this._recordingSession.getAudioElement());
   }
 }
 
