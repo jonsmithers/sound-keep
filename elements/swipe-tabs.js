@@ -32,7 +32,7 @@ export class SwipeTabs extends PolymerElement {
         /*   height: calc(100% + 30px); */
         /*   border: 5px solid pink; */
         /* } */
-        .bothTabsContainer {
+        #bothTabsContainer {
           box-sizing: border-box;
           /* border: 8px solid red; */
           width: 200%;
@@ -49,7 +49,7 @@ export class SwipeTabs extends PolymerElement {
       </style>
       <div class="root">
         <div id="hiddenScrollbar">
-          <div class="bothTabsContainer">
+          <div id="bothTabsContainer">
             <div class="singleTab" style="background:cyan">
               record
               </div><div class="singleTab" style="background:maroon; color:white;">
@@ -68,6 +68,7 @@ export class SwipeTabs extends PolymerElement {
     let scrollbarHeight = this.$.hiddenScrollbar.offsetHeight - this.$.hiddenScrollbar.clientHeight
     scrollbarHeight = Math.max(scrollbarHeight, 5); // mobile scrollbars have offset
     this.$.hiddenScrollbar.style.height=`calc(100% + ${scrollbarHeight}px`;
+    this.$.bothTabsContainer.style.height=`calc(100% - ${scrollbarHeight}px`;
     console.log('%cyay', 'font-size:15px');
   }
 
