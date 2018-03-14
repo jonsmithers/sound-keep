@@ -36,13 +36,17 @@ export class SwipeTabs extends PolymerElement {
           box-sizing: border-box;
           /* border: 8px solid red; */
           width: 200%;
+          display: flex;
+          flex-direction: row;
         }
         .singleTab {
           box-sizing: border-box;
           height: 100%;
-          width: 50%;
+          flex-basis: 50%;
+          border: 2px solid pink;
+          /* width: 50%; */
           /* border: 1px solid orange; */
-          display: inline-block;
+          /* display: inline-block; */
         }
 
 
@@ -50,10 +54,10 @@ export class SwipeTabs extends PolymerElement {
       <div class="root">
         <div id="hiddenScrollbar">
           <div id="bothTabsContainer">
-            <div class="singleTab" style="background:cyan">
-              record
+            <div class="singleTab">
+              <slot name="left">left tab</slot>
               </div><div class="singleTab" style="background:maroon; color:white;">
-              listen
+              <slot name="right">recordings here</slot>
             </div>
           </div>
         </div>
