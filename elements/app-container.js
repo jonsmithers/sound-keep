@@ -1,8 +1,10 @@
-import "../node_modules/@polymer/paper-button/paper-button.js";
+import "../node_modules/@polymer/app-layout/app-drawer/app-drawer.js";
 import "../node_modules/@polymer/app-layout/app-header/app-header.js";
 import "../node_modules/@polymer/app-layout/app-toolbar/app-toolbar.js";
-import "../node_modules/@polymer/app-layout/app-drawer/app-drawer.js";
+import "../node_modules/@polymer/paper-button/paper-button.js";
+import "../node_modules/@polymer/paper-icon-button/paper-icon-button.js";
 import "../node_modules/@polymer/paper-tabs/paper-tabs.js";
+import "./recording-controls.js";
 import "./swipe-tabs.js";
 import {Element as PolymerElement, html} from "../node_modules/@polymer/polymer/polymer-element.js";
 import {RecordingSession} from '../RecordingSession.js';
@@ -19,7 +21,7 @@ export class AppContainer extends PolymerElement {
           width: 100%;
           box-sizing: border-box;
           /* height: calc(100vh - 128px); */
-          border:5px solid black;
+          /* border:5px solid black; */
         }
         app-toolbar {
           background: var(--paper-blue-500);
@@ -43,7 +45,6 @@ export class AppContainer extends PolymerElement {
         }
       </style>
       <div id="flexContainer" class="verticalFlex">
-      <!-- <app-header> -->
         <app-toolbar>
           <!-- <div main-title>Record</div> -->
           <paper-tabs>
@@ -51,21 +52,14 @@ export class AppContainer extends PolymerElement {
             <paper-tab>Listen</paper-tab>
           </paper-tabs>
         </app-toolbar>
-      <!-- </app-header> -->
-      <swipe-tabs class="flewGrow"></swipe-tabs>
+        <swipe-tabs class="flewGrow">
+          <div slot="left">
+            <recording-controls></recording-controls>
+          </div>
+        </swipe-tabs>
+      </div>
     <!-------------------------------------------------------------------------------->
     `;
-  }
-  connectedCallback() {
-    super.connectedCallback();
-    (async() => {
-      let session = await new RecordingSession().start();
-      console.log('session', session);
-      await new Promise(resolve => setTimeout(resolve, 5000));
-      await session.stop();
-      console.log('recording stopped');
-      this.$.flexContainer.appendChild(session.getAudioElement());
-    })();
   }
 }
 

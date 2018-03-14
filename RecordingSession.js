@@ -1,3 +1,5 @@
+import {Rx} from "./Rxjs.js";
+
 class RecordingSession {
 
   constructor( ){
@@ -13,33 +15,37 @@ class RecordingSession {
 
   async start() {
     this._isActive = true;
-    try {
-      var audioStream = await navigator.mediaDevices.getUserMedia({audio: true, noiseSuppression: false});
-    } catch(e) {
-      throw e;
-    }
-    this._mediaRecorder = new MediaRecorder(audioStream, {mimeType: this._mimeType});
-    this._chunks = [];
-    this._mediaRecorder.ondataavailable = e => {
-      this._chunks.push(e.data);
-      console.log('e', e);
-    };
-    this.waitToStop = new Promise((_promiseResolve, _promiseReject) => {
-      Object.assign(this, {_promiseResolve,_promiseReject});
-    });
-    this._mediaRecorder.onstop = () => {
-      console.log("TODO STATE", this._mediaRecorder.state);
-      this._isActive = false;
-      this._promiseResolve();
-    };
-    this._mediaRecorder.start();
-    return this;
-  }
+    return Rx.Observable.create(observer => {
+      navigator.mediaDevices.getUserMedia({audio: true, noiseSuppression: false}).then(audioStream => {
+        this._audioStream = audioStream;
+        this._mediaRecorder = new MediaRecorder(audioStream, {mimeType: this._mimeType});
 
-  async stop() {
-    console.log('stopping');
-    this._mediaRecorder.stop();
-    await this.waitToStop;
+        this._chunks = [];
+        this._mediaRecorder.ondataavailable = e => {
+          this._chunks.push(e.data);
+          observer.next(e.data);
+          console.log('e', e);
+        };
+        this.waitToStop = new Promise((_promiseResolve, _promiseReject) => {
+          Object.assign(this, {_promiseResolve,_promiseReject});
+        });
+        this._mediaRecorder.onstop = () => {
+          console.log("TODO STATE", this._mediaRecorder.state);
+          this._isActive = false;
+          this._promiseResolve();
+        };
+        this._mediaRecorder.start(100);
+        window.test = this;
+      }).catch(observer.error);
+
+      this.stop = async () => {
+        console.log('stopping');
+        this._mediaRecorder.stop();
+        await this.waitToStop;
+      };
+
+      return this.stop;
+    }).subscribe(...arguments);
   }
 
   get isActive() {
