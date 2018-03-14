@@ -58,7 +58,8 @@ export class RecordingControls extends PolymerElement {
     `;
   }
   async _onRecordTap() {
-    this._recordingSession = await new RecordingSession().start();
+    this._recordingSession = new RecordingSession();
+    this._recordingSession.start(console.log, console.warn, console.error);
     this.visibleButton = 'stop';
   }
   async _onStopTap() {
