@@ -15,7 +15,6 @@ export class AppContainer extends PolymerElement {
   }
   static get template() {
     return html`
-    <!-------------------------------------------------------------------------------->
       <style>
         swipe-tabs {
           width: 100%;
@@ -58,7 +57,6 @@ export class AppContainer extends PolymerElement {
           </div>
         </swipe-tabs>
       </div>
-    <!-------------------------------------------------------------------------------->
     `;
   }
 }

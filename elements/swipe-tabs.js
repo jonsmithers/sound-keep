@@ -8,7 +8,6 @@ export class SwipeTabs extends PolymerElement {
 
   static get template() {
     return html`
-    <!-------------------------------------------------------------------------------->
       <style>
         :host {
           display: block;
@@ -62,17 +61,14 @@ export class SwipeTabs extends PolymerElement {
           </div>
         </div>
       </div>
-      
-    <!-------------------------------------------------------------------------------->`;
-
-  }
+  `}
 
   connectedCallback() {
     super.connectedCallback();
     let scrollbarHeight = this.$.hiddenScrollbar.offsetHeight - this.$.hiddenScrollbar.clientHeight
     scrollbarHeight = Math.max(scrollbarHeight, 5); // mobile scrollbars have offset
-    this.$.hiddenScrollbar.style.height=`calc(100% + ${scrollbarHeight}px`;
-    this.$.bothTabsContainer.style.height=`calc(100% - ${scrollbarHeight}px`;
+    this.$.hiddenScrollbar.style.height=`calc(100% + ${scrollbarHeight}px)`;
+    this.$.bothTabsContainer.style.height=`calc(100% - ${scrollbarHeight}px)`;
     console.log('%cyay', 'font-size:15px');
   }
 
